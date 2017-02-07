@@ -52,7 +52,7 @@ class BookViewController: UIViewController {
         setFavoriteIcon()
         delegate?.bookDidChangeFavoriteStatus(book: book,
                                              isFavorite: book.isFavorite)
-        storeFavoriteStatus()
+        storeOrDeleteFavoriteStatus()
     }
     
     //MARK: - View Synchronization
@@ -71,9 +71,17 @@ class BookViewController: UIViewController {
     
     //MARK: - Favorite handling
     
-    func storeFavoriteStatus() {
+    func storeOrDeleteFavoriteStatus() {
+        let hash = String(book.hashValue)
         let userDefaults = UserDefaults.standard
-        userDefaults.set(book.isFavorite, forKey: String(book.hashValue))
+        if(!book.isFavorite) {
+            // Una vez que un usuario desmarca como favorito un libro, 
+            // eliminamos la clave para no ocupar espacio innecesario
+            userDefaults.removeObject(forKey: hash)
+        }
+        else {
+            userDefaults.set(book.isFavorite, forKey: hash)
+        }
     }
     
     
