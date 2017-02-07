@@ -82,7 +82,7 @@ class Book {
     }
     
     var listTags: String {
-        // Volvemos a dejar los autores tal cual venian en el json para mostrar en la celda (pero ordenado)
+        // Volvemos a dejar los tags tal cual venian en el json para mostrar en la celda (pero ordenado)
         get {
             let ordered = tags.sorted()
             return ordered.map({ $0.description }).joined(separator: ", ")
