@@ -76,7 +76,7 @@ extension Tag : Comparable{
             return false
         }
         /////////////////////////////////////
-        // Utilizamos el proxy de String para minimizar el trabajo (Propiedad name)
+        // Utilizamos como proxy la implementación de String para minimizar el trabajo (Propiedad name)
         return (lhs.proxyForComparison() < rhs.proxyForComparison())
     }
     
